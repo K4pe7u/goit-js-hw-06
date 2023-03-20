@@ -1,2 +1,3 @@
-HomeWork
-goit-js-hw-06
+GoIT-js-hw-06
+HomeWork nr 6
+Subject - DOM

@@ -11,4 +11,25 @@ const images = [
     url: 'https://images.pexels.com/photos/219943/pexels-photo-219943.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
     alt: 'Group of Horses Running',
   },
-];
+]
+
+const gallery = document.querySelector('.gallery')
+
+gallery.insertAdjacentHTML(
+  'beforeend',
+  images
+    .map(
+      (item) =>
+        `<li><img class="gallery__item" src="${item.url}" alt="${item.alt}"/></li>`
+    )
+    .join('')
+)
+
+// const gallery = document.querySelector(".gallery");
+
+// const newImg = images;
+// const markup = newImg
+// .map((image) => `<li class="gallery__item">${image}</li>`)
+// .join("");
+
+// gallery.insertAdjacentHTML("beforeend", markup);
