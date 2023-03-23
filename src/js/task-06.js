@@ -6,3 +6,6 @@ inputEl.addEventListener('blur', () => {
     ? (inputEl.className = 'valid')
     : (inputEl.className = 'invalid')
 })
+
+//dataset = [data-length] in inputEl
+// +inputLength -> length (Number nie string)
