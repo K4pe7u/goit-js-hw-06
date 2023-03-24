@@ -5,11 +5,11 @@ const valueNumber = document.querySelector('#value')
 const increasingEl = document.querySelector("[data-action='increment']")
 
 decreasingEl.addEventListener('click', () => {
-  valueNumber.textContent = counterValue--
+  valueNumber.textContent = --counterValue
 })
 
 increasingEl.addEventListener('click', () => {
-  valueNumber.textContent = counterValue++
+  valueNumber.textContent = ++counterValue
 })
 
 // klikanie - zdarzenie =>
