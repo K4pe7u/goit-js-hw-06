@@ -1,29 +1,52 @@
-function getRandomHexColor() {
-  return `#${Math.floor(Math.random() * 16777215)
+// generator kolorów (kod 16-tkowy)
+
+const getRandomHexColor = () =>
+  `#${Math.floor(Math.random() * 16777215)
     .toString(16)
     .padStart(6, 0)}`
-}
-let sizeFirstBox = 30
-let sizeChanging = 10
 
-const createBoxes = (amount) => {
-  const boxes = []
+// zmienne buttonów inputa przestrzeni na boxy
 
+const createEl = document.querySelector('[data-create]')
+const destroyEl = document.querySelector('[data-destroy]')
+const inputEl = document.querySelector('#controls input')
+const boxesEl = document.querySelector('#boxes')
+
+// zmienne wielkości boxów (mozna zrobić w css)
+
+let startSize = 24
+let valueSize = 12
+
+// funkcja iterująca tworząca każdy kolejny box w większym rozmiarze o równą wartość
+// *iteracja
+// *zmianna tworząca elementy (div)
+// *przestrzeń, w której mają znaleźć się kolejno tworzone boxy
+// *określenie rozmiarów początkowych i stylizacja kolorem z generatora hex
+// *zwiększenie sumy siz'u kolejnego elementu
+
+function createBoxes(amount) {
   for (let i = 0; i < amount; i++) {
-    const createBox = document.createElement('div')
+    const oneBox = document.createElement('div')
 
-    createBox.style.width = `${sizeFirstBox} + i * ${sizeChanging} + "px"`
-    createBox.style.height = `${sizeFirstBox} + i * ${sizeChanging} + "px"`
-    createBox.style.backgroundColor = getRandomHexColor()
+    boxesEl.append(oneBox)
 
-    boxes.push(createBox)
+    oneBox.style.height = `${startSize}px`
+    oneBox.style.width = `${startSize}px`
+    oneBox.style.backgroundColor = getRandomHexColor()
+
+    startSize += valueSize
   }
-  return boxes
 }
 
-document.getElementById('boxes').innerHTML(...createBoxes(10))
+// zdarzenia kliknięć
+// create kreuje tyle kolejnych boxów ile podano w input (wartosc input'a)
+// destroy usuwa zawartość inputa i wszystkie dotąd stworzone boxy - czyści wszystko.
+// zeruje wartość siz'u do wartości początkowej
 
-// let div = document.createElement("div");
-// div.append("Some text");
+createEl.addEventListener('click', () => createBoxes(inputEl.value))
 
-// console.log(div.textContent); // "Some text"
+destroyEl.addEventListener('click', () => {
+  inputEl.value = ''
+  boxesEl.innerHTML = ''
+  startSize = 24
+})
